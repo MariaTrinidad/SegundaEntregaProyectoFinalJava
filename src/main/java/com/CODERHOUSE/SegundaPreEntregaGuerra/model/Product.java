@@ -12,14 +12,24 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private String code;
+    //@Column(nullable = false)
+    private Double price;
+    //@Column(nullable = false)
+    private Integer stock;
     @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private int stock;
+    private String title;
 
     //Getters y setters y override methods
     public int getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setId(int id) {
@@ -42,30 +52,31 @@ public class Product {
         this.code = code;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
     @Override
     public String toString() {
-        return "Producto{" +
+        return "Product{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", code='" + code + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
+                ", title='" + title + '\'' +
                 '}';
     }
 }

@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Field;
+import java.util.jar.Attributes;
+
 @RestController
 @RequestMapping(path = "api/v1/product")
 public class ProductController {
@@ -18,21 +21,61 @@ public class ProductController {
     //Create
     @PostMapping
     public ResponseEntity<Object> postProduct(@RequestBody Product product) {
+        System.out.println(product);
         try {
             System.out.println(product);
+
+            String productoIngresado = validarProduct(product);
+
+            if (!productoIngresado.isEmpty()) {
+                return ResponseHandler.generateResponse(
+                       "El valor del atributo '" + productoIngresado + "' es nulo",
+                        HttpStatus.BAD_REQUEST,
+                        null
+                );
+            }
+            //Agregar que si es otro tipo el tipo
+
+
             Product productSaved = productService.postProduct(product);
+
             return ResponseHandler.generateResponse(
                     "Data retrieved successfully",
                     HttpStatus.OK,
                     productSaved
             );
         } catch (Exception e) {
+
             return ResponseHandler.generateResponse(
                     e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR,
                     null
             );
         }
+    }
+
+    public String validarProduct(Product product) {
+         Class<?> claseAux = product.getClass();
+        Field[] fields = claseAux.getDeclaredFields();
+
+        for (Field field : fields) {
+            System.out.println(field);
+            //Esto permite la accesibilidad al campo/atrributo para leerlo
+            field.setAccessible(true);
+
+            try {
+                Object value = field.get(product);
+                if (value == null) {
+                    System.out.println(field.getName());
+                    return field.getName();
+                }
+            } catch (IllegalAccessException e) {
+                System.out.println("entro al catch");
+                e.printStackTrace();
+            }
+        }
+
+        return "";
     }
 
     @GetMapping(path = "{id}")
