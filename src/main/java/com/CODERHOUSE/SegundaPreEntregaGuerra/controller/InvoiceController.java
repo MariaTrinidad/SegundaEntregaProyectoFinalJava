@@ -1,10 +1,10 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.controller;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.middleware.ResponseHandler;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDTO;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceWithDetailsDTO;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestInvoice;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.*;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ProductRepository;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.service.InvoiceService;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,7 @@ public class InvoiceController {
             System.out.println(reqInvoice);
             //DTO Data transfer object
             InvoiceDTO data = invoiceService.postInvoice(reqInvoice);
+
             return ResponseHandler.generateResponse(
                     "Invoice created successful",
                     HttpStatus.OK,

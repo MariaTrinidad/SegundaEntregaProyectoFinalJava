@@ -3,10 +3,10 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 public class InvoiceDetailDTO {
     private String description;
     private String code;
-    private double price;
-    private int quantity;
+    private Double price;
+    private Integer quantity;
 
-    public InvoiceDetailDTO(String description, String code, double price, int quantity) {
+    public InvoiceDetailDTO(String description, String code, Double price, Integer quantity) {
         this.description = description;
         this.code = code;
         this.price = price;

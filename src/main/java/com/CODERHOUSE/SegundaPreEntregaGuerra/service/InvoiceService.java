@@ -3,6 +3,7 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.*;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ClientRepository;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.InvoiceRepository;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,16 @@ public class InvoiceService {
         int i = 0;
         for (Product product:
                 productList) {
-            total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
-            i++;
+           for (RequestProductDetail productosRequesting :
+               requestInvoice.getProduct_list()) {
+               if (product.getStock() < productosRequesting.getQuantity()) {
+                   throw new Exception("No hay stock suficiente del producto con Id: " + productosRequesting.getProductId());
+               } else {
+                   total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
+                   i++;
+               }
+           }
+
         }
 
         //Instanciamos un objeto invoice

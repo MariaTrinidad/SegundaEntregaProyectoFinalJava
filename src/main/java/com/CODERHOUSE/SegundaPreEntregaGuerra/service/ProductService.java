@@ -22,7 +22,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> getProductsById(List<RequestProductDetail> productListId) throws Exception {
+    public  List<Product> getProductsById(List<RequestProductDetail> productListId) throws Exception {
         List<Product> productList = new ArrayList<>();
         for (RequestProductDetail requestProduct:
                 productListId) {
