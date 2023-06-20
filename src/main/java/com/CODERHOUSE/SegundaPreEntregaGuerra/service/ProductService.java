@@ -42,7 +42,19 @@ public class ProductService {
         } else {
             return product.get();
         }
-    }/*
+    }
+
+    public void decreaseStockProducts(List<RequestProductDetail>products ){
+        for (RequestProductDetail product:
+             products) {
+               Optional<Product> porductoAModificar = productRepository.findById(product.getProductId());
+               int stockAnterior = porductoAModificar.get().getStock();
+               int stockADescontar = product.getQuantity();
+               porductoAModificar.get().setStock(stockAnterior-stockADescontar);
+        }
+    }
+
+    /*
     public List<Product> getProductsByInvoiceId(int id) throws Exception{
         Optional<Product> product = productRepository.findById((id);
     }*/

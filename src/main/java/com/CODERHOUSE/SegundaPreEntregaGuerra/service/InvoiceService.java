@@ -44,6 +44,7 @@ public class InvoiceService {
                    throw new Exception("No hay stock suficiente del producto con Id: " + productosRequesting.getProductId());
                } else {
                    total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
+                   productService.decreaseStockProducts(requestInvoice.getProduct_list());
                    i++;
                }
            }
