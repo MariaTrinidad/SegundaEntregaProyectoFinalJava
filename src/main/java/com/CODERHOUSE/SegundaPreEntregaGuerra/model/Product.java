@@ -2,6 +2,8 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -10,14 +12,19 @@ public class Product {
     private int id;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String code;
     //@Column(nullable = false)
+    @Column(nullable = false)
     private Double price;
     //@Column(nullable = false)
+    @Column(nullable = false)
     private Integer stock;
     @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
+    private Boolean is_active;
+
 
     //Getters y setters y override methods
     public int getId() {
@@ -68,6 +75,14 @@ public class Product {
         this.stock = stock;
     }
 
+    public Boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Boolean is_active) {
+        this.is_active = is_active;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -77,6 +92,7 @@ public class Product {
                 ", price=" + price +
                 ", stock=" + stock +
                 ", title='" + title + '\'' +
+                ", is_active=" + is_active +
                 '}';
     }
 }

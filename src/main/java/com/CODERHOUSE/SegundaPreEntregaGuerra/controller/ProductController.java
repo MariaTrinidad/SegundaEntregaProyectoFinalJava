@@ -3,13 +3,16 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.controller;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.middleware.ResponseHandler;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestProductDetail;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.jar.Attributes;
 
 @RestController
@@ -29,7 +32,7 @@ public class ProductController {
 
             if (!productoIngresado.isEmpty()) {
                 return ResponseHandler.generateResponse(
-                       "El valor del atributo '" + productoIngresado + "' es nulo",
+                        "El valor del atributo '" + productoIngresado + "' es nulo",
                         HttpStatus.BAD_REQUEST,
                         null
                 );
@@ -55,7 +58,7 @@ public class ProductController {
     }
 
     public String validarProduct(Product product) {
-         Class<?> claseAux = product.getClass();
+        Class<?> claseAux = product.getClass();
         Field[] fields = claseAux.getDeclaredFields();
 
         for (Field field : fields) {
@@ -65,6 +68,7 @@ public class ProductController {
 
             try {
                 Object value = field.get(product);
+                System.out.println(field);
                 if (value == null) {
                     System.out.println(field.getName());
                     return field.getName();
@@ -116,4 +120,47 @@ public class ProductController {
             );
         }
     }*/
+
+    @GetMapping(path = "/ProductsDetails")
+    public ResponseEntity<Object> getProduct(@RequestBody List<RequestProductDetail> productListId) {
+        try {
+            System.out.println(productListId);
+             List <Product> productsFound = productService.getProductsById(productListId);
+            return ResponseHandler.generateResponse(
+                    "Client get successfully",
+                    HttpStatus.OK,
+                    productsFound
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+
+
+
+    }
+    @DeleteMapping(path = "/deleteProduct/{id}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable() Integer id){
+        try {
+            System.out.println("Producto a borrar" + productService.getProduct(id));
+            productService.deleteProduct(id);
+            System.out.println(productService.getProduct(id));
+
+            return ResponseHandler.generateResponse(
+                    "Product delete successfully",
+                    HttpStatus.OK,
+                    productService.getProduct(id)
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+    }
+
 }

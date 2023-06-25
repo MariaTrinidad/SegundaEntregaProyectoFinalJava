@@ -32,7 +32,7 @@ public class InvoiceService {
         Client clientExist = clientService.getClient(requestInvoice.getClient_id());
         //Buscamos los productos
         List<Product> productList = productService.getProductsById(requestInvoice.getProduct_list());
-
+        System.out.println("productListId "  + requestInvoice.getProduct_list());
         //Calculo del total
         double total = 0;
         int i = 0;
@@ -105,10 +105,5 @@ public class InvoiceService {
                 invoice_details
         );
 
-        /*return new InvoiceDTO(
-                invoiceFound.get().getId(),
-                invoiceFound.get().getCreated_at(),
-                invoiceFound.get().getTotal()
-        );*/
     }
 }
