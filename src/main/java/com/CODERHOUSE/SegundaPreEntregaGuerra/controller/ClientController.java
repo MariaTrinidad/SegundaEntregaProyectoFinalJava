@@ -17,7 +17,6 @@ public class ClientController {
 
     //CRUD Cliente
 
-    //Create
 
     @PostMapping
     public  ResponseEntity<Object> postClient (@RequestBody Client client){

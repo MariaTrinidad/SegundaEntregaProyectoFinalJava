@@ -3,6 +3,7 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Invoice;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDTO;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ClientRepository;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,17 @@ public class ClientService {
     @Autowired
     private InvoiceRepository invoiceRepository;
     public Client postClient(Client client) throws Exception {
+        String clientIngresado = validarClient(client);
+
+        if (!clientIngresado.isEmpty()) {
+
+            throw new Exception("El valor del atributo '" + clientIngresado + "' es nulo");
+        }
         return clientRepository.save(client);
     }
 
     public Client getClient(int id) throws Exception {
+
         Optional<Client> cliente = clientRepository.findById(id);
         List<InvoiceDTO> facturasCliente = invoiceRepository.getInvoicesByClientById(id);
         System.out.println(facturasCliente);
@@ -57,5 +65,30 @@ public class ClientService {
     public boolean clientExist (int id) throws Exception {
         Optional<Client> cliente = clientRepository.findById(id);
         return cliente.isPresent();
+    }
+
+    public String validarClient(Client client) {
+        Class<?> claseAux = client.getClass();
+        Field[] fields = claseAux.getDeclaredFields();
+
+        for (Field field : fields) {
+            System.out.println(field);
+            //Esto permite la accesibilidad al campo/atrributo para leerlo
+            field.setAccessible(true);
+
+            try {
+                Object value = field.get(client);
+                System.out.println(field);
+                if (value == null) {
+                    System.out.println(field.getName());
+                    return field.getName();
+                }
+            } catch (IllegalAccessException e) {
+                System.out.println("entro al catch");
+                e.printStackTrace();
+            }
+        }
+
+        return "";
     }
 }

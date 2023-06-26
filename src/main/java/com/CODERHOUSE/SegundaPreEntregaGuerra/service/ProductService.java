@@ -1,11 +1,13 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
+import com.CODERHOUSE.SegundaPreEntregaGuerra.middleware.ResponseHandler;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestProductDetail;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -21,7 +23,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public Product postProduct(Product product) throws Exception {
+        String productoIngresado = validarProduct(product);
 
+        if (!productoIngresado.isEmpty()) {
+
+            throw new Exception("El valor del atributo '" + productoIngresado + "' es nulo");
+        }
         return productRepository.save(product);
     }
 
@@ -76,4 +83,30 @@ public class ProductService {
             System.out.println(productRepository.findById(productId));
 
     }
+
+    public String validarProduct(Product product) {
+        Class<?> claseAux = product.getClass();
+        Field[] fields = claseAux.getDeclaredFields();
+
+        for (Field field : fields) {
+            System.out.println(field);
+            //Esto permite la accesibilidad al campo/atrributo para leerlo
+            field.setAccessible(true);
+
+            try {
+                Object value = field.get(product);
+                System.out.println(field);
+                if (value == null) {
+                    System.out.println(field.getName());
+                    return field.getName();
+                }
+            } catch (IllegalAccessException e) {
+                System.out.println("entro al catch");
+                e.printStackTrace();
+            }
+        }
+
+        return "";
+    }
+
 }

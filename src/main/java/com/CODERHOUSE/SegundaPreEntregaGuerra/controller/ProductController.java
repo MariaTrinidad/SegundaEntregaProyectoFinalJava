@@ -25,21 +25,8 @@ public class ProductController {
     //Create
     @PostMapping
     public ResponseEntity<Object> postProduct(@RequestBody Product product) {
-        System.out.println(product);
+
         try {
-            System.out.println(product);
-
-            String productoIngresado = validarProduct(product);
-
-            if (!productoIngresado.isEmpty()) {
-                return ResponseHandler.generateResponse(
-                        "El valor del atributo '" + productoIngresado + "' es nulo",
-                        HttpStatus.BAD_REQUEST,
-                        null
-                );
-            }
-            //Agregar que si es otro tipo el tipo
-
 
             Product productSaved = productService.postProduct(product);
 
@@ -58,30 +45,7 @@ public class ProductController {
         }
     }
 
-    public String validarProduct(Product product) {
-        Class<?> claseAux = product.getClass();
-        Field[] fields = claseAux.getDeclaredFields();
 
-        for (Field field : fields) {
-            System.out.println(field);
-            //Esto permite la accesibilidad al campo/atrributo para leerlo
-            field.setAccessible(true);
-
-            try {
-                Object value = field.get(product);
-                System.out.println(field);
-                if (value == null) {
-                    System.out.println(field.getName());
-                    return field.getName();
-                }
-            } catch (IllegalAccessException e) {
-                System.out.println("entro al catch");
-                e.printStackTrace();
-            }
-        }
-
-        return "";
-    }
 
     @GetMapping(path = "{id}")
     public ResponseEntity<Object> getProduct(@PathVariable() int id) {
@@ -104,24 +68,6 @@ public class ProductController {
 
 
     }
- /*
-    @GetMapping(path = "/getProductsByInvoice_Id/{invoice_id}")
-    public ResponseEntity<Object> getProductsByInvoiceId (@PathVariable int invoice_id){
-        try {
-            List<Product> data = productService.getProductsByInvoiceId(clientId);
-            return ResponseHandler.generateResponse(
-                    "Get Invoices by Client id successful",
-                    HttpStatus.OK,
-                    data
-            );
-        } catch (Exception e) {
-            return ResponseHandler.generateResponse(
-                    e.getMessage(),
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    null
-            );
-        }
-    }*/
 
     @GetMapping(path = "/ProductsDetails")
     public ResponseEntity<Object> getProduct(@RequestBody List<RequestProductDetail> productListId) {
