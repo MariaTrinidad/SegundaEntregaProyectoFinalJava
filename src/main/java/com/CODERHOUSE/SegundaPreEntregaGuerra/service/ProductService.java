@@ -1,5 +1,6 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestProductDetail;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ProductRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -58,6 +60,12 @@ public class ProductService {
         }
     }
 
+    public void updateProduct(Product product){
+
+        productRepository.saveAndFlush(product);
+
+
+    }
     public void deleteProduct(Integer productId){
 
             Optional<Product> producto = productRepository.findById(productId);

@@ -28,12 +28,8 @@ public class ClientService {
 
 
     public void updateClient(Client client){
-        Class<?> claseAux = client.getClass();
-        Field[] fields = claseAux.getDeclaredFields();
 
         clientRepository.saveAndFlush(client);
-
-
     }
     public void deleteClient(Integer clientId){
 

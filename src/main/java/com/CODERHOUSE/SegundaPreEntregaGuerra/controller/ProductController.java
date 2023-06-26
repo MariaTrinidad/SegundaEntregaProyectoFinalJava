@@ -2,6 +2,7 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.controller;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.middleware.ResponseHandler;
 
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestProductDetail;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.service.ProductService;
@@ -141,6 +142,25 @@ public class ProductController {
 
 
 
+    }
+    @PutMapping
+    public ResponseEntity<Object> updateClient(@RequestBody Product product){
+        try {
+            System.out.println("Product a actualizar" + product);
+            productService.updateProduct(product);
+
+            return ResponseHandler.generateResponse(
+                    "Client Update successfully",
+                    HttpStatus.OK,
+                    product
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
     }
     @DeleteMapping(path = "/deleteProduct/{id}")
     public ResponseEntity<Object> deleteProduct(@PathVariable() Integer id){
