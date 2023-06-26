@@ -3,6 +3,7 @@ package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -75,6 +76,19 @@ public class Client {
 
     public void setIs_active(Boolean is_active) {
         this.is_active = is_active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id && Objects.equals(name, client.name) && Objects.equals(lastname, client.lastname) && Objects.equals(docnumber, client.docnumber) && Objects.equals(is_active, client.is_active) && Objects.equals(invoice, client.invoice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

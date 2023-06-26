@@ -1,11 +1,11 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.Optional;
 
 @Service
@@ -25,16 +25,28 @@ public class ClientService {
             return cliente.get();
         }
     }
-    public void deleteClient(Integer clientId){
 
-        Optional<Client> cliente = clientRepository.findById(clientId);
-        System.out.println("Cliente a dar de baja "+ cliente);
-        cliente.get().setIs_active(false);
-        clientRepository.saveAndFlush(cliente.get());
-        System.out.println(cliente.get());
+
+    public void updateClient(Client client){
+        Class<?> claseAux = client.getClass();
+        Field[] fields = claseAux.getDeclaredFields();
+
+        clientRepository.saveAndFlush(client);
 
 
     }
+    public void deleteClient(Integer clientId){
+
+        Optional<Client> client = clientRepository.findById(clientId);
+        System.out.println("Cliente a dar de baja "+ client);
+        client.get().setIs_active(false);
+        clientRepository.saveAndFlush(client.get());
+        System.out.println(client.get());
+        System.out.println(clientRepository.findById(clientId));
+
+    }
+
+
     public boolean clientExist (int id) throws Exception {
         Optional<Client> cliente = clientRepository.findById(id);
         return cliente.isPresent();

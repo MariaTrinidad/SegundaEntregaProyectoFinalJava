@@ -50,8 +50,9 @@ public class InvoiceWithDetailsDTO {
 
     @Override
     public String toString() {
-        return "InvoiceDTO{" +
-                "invoice_id=" + invoice_id +
+        return "InvoiceWithDetailsDTO{" +
+                "client_id=" + client_id +
+                ", invoice_id=" + invoice_id +
                 ", created_at='" + created_at + '\'' +
                 ", total=" + total +
                 ", details=" + details +

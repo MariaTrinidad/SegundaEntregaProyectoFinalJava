@@ -44,7 +44,7 @@ public class InvoiceController {
         try {
             System.out.println(invoice_id);
             InvoiceWithDetailsDTO data = invoiceService.getInvoiceById(invoice_id);
-            System.out.println(data);
+            System.out.println("DATA "+ data);
             return ResponseHandler.generateResponse(
                     "Get Invoice by Id succesful",
                     HttpStatus.OK,

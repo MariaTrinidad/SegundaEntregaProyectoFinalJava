@@ -58,12 +58,32 @@ public class ClientController {
 
     }
 
+    @PutMapping
+    public ResponseEntity<Object> updateClient(@RequestBody Client client){
+        try {
+            System.out.println("Cliente a actualizar" + client);
+            clientService.updateClient(client);
+
+
+            return ResponseHandler.generateResponse(
+                    "Client Update successfully",
+                    HttpStatus.OK,
+                    client
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+    }
     @DeleteMapping(path = "/delete/{id}")
     public ResponseEntity<Object> deleteClient(@PathVariable() Integer id) {
         try {
             System.out.println("Cliente a borrar" + clientService.getClient(id));
             clientService.deleteClient(id);
-
+            System.out.println(clientService.getClient(id));
 
             return ResponseHandler.generateResponse(
                     "Client delete successfully",

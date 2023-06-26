@@ -14,10 +14,10 @@ public class Product {
     private String description;
     @Column(nullable = false, unique = true)
     private String code;
-    //@Column(nullable = false)
+
     @Column(nullable = false)
     private Double price;
-    //@Column(nullable = false)
+
     @Column(nullable = false)
     private Integer stock;
     @Column(nullable = false)
