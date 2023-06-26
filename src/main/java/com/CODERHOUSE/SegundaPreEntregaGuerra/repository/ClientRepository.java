@@ -1,11 +1,15 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.repository;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Invoice;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
+
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     //Custom query by method name
@@ -20,5 +24,7 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     //Como estamos haciendo nativeQuery, debemos llamar al nombre de la tabla tal cual está en la db
     @Query(value = "SELECT * FROM client a WHERE name = ?1 ORDER BY lastname ASC", nativeQuery = true)
     List<Client> getByNameOrderedByLastnameNativeQuery(String name);
+
+
 
 }

@@ -12,7 +12,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne()
     private Client client;
 
     @OneToMany(mappedBy = "invoice")

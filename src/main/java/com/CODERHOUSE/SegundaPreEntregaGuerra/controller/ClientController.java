@@ -43,12 +43,17 @@ public class ClientController {
         try {
             System.out.println(id);
             Client clientFound = clientService.getClient(id);
+            System.out.println(clientFound);
+            System.out.println(clientFound.getInvoice());;
+
             return ResponseHandler.generateResponse(
                     "Client get successfully",
                     HttpStatus.OK,
                     clientFound
             );
+
         } catch (Exception e) {
+
             return ResponseHandler.generateResponse(
                     e.getMessage(),
                     HttpStatus.INTERNAL_SERVER_ERROR,

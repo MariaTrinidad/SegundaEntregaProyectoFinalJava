@@ -88,6 +88,7 @@ public class ProductController {
         try {
             System.out.println(id);
             Product productFound = productService.getProduct(id);
+            System.out.println(productFound);
             return ResponseHandler.generateResponse(
                     "Client get successfully",
                     HttpStatus.OK,
