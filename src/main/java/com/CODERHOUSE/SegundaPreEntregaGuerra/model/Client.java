@@ -22,6 +22,8 @@ public class Client {
 
     private String docnumber;
 
+    @Column(nullable = false)
+    private Boolean is_active;
     @OneToMany(mappedBy = "client")
     private List<Invoice> invoice;
 
@@ -67,6 +69,14 @@ public class Client {
         this.docnumber = docnumber;
     }
 
+    public Boolean getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(Boolean is_active) {
+        this.is_active = is_active;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -74,6 +84,7 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", docnumber='" + docnumber + '\'' +
+                ", is_active=" + is_active +
                 '}';
     }
 }

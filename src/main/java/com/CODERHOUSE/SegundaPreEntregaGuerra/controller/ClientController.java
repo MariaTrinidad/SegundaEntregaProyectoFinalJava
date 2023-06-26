@@ -56,6 +56,27 @@ public class ClientController {
             );
         }
 
-}
+    }
 
+    @DeleteMapping(path = "/delete/{id}")
+    public ResponseEntity<Object> deleteClient(@PathVariable() Integer id) {
+        try {
+            System.out.println("Cliente a borrar" + clientService.getClient(id));
+            clientService.deleteClient(id);
+
+
+            return ResponseHandler.generateResponse(
+                    "Client delete successfully",
+                    HttpStatus.OK,
+                    clientService.getClient(id)
+            );
+        } catch (Exception e) {
+            return ResponseHandler.generateResponse(
+                    e.getMessage(),
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    null
+            );
+        }
+
+    }
 }

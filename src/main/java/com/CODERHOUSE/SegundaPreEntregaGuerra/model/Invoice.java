@@ -63,7 +63,6 @@ public class Invoice {
     public void setInvoiceDetails(List<InvoiceDetail> invoiceDetails) {
         this.invoiceDetails = invoiceDetails;
     }
-
     @Override
     public String toString() {
         return "Invoice{" +
@@ -73,4 +72,5 @@ public class Invoice {
                 ", total=" + total +
                 '}';
     }
+
 }

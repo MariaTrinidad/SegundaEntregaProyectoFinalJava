@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface InvoiceDetailRepository extends JpaRepository<InvoiceDetail, Integer> {
     @Query("SELECT new com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDetailDTO(" +
+            "p.title, "+
             "p.description, " +
             "p.code, " +
             "d.price, " +

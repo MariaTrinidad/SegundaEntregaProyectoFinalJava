@@ -80,6 +80,7 @@ public class InvoiceService {
         //Por último retornamos el DTO
         return new InvoiceDTO(
                 invoiceCreated.getId(),
+                invoiceCreated.getClient().getId(),
                 invoiceCreated.getCreated_at(),
                 invoiceCreated.getTotal()
         );
@@ -92,14 +93,19 @@ public class InvoiceService {
 
     public InvoiceWithDetailsDTO getInvoiceById (int invoice_id) throws Exception {
         Optional<Invoice> invoiceFound = invoiceRepository.findById(invoice_id);
+        System.out.println("invoiceFound" + invoiceFound);
         if (invoiceFound.isEmpty()) {
             throw new Exception("Invoice not found");
         }
 
         List<InvoiceDetailDTO> invoice_details = invoiceDetailService.getInvoiceDetailsByInvoiceId(invoice_id);
-
+        for (InvoiceDetailDTO detalleFactura :
+                invoice_details) {
+            System.out.println("invoicedetails"+ detalleFactura.toString());
+        }
         return new InvoiceWithDetailsDTO(
                 invoiceFound.get().getId(),
+                invoiceFound.get().getClient().getId(),
                 invoiceFound.get().getCreated_at(),
                 invoiceFound.get().getTotal(),
                 invoice_details

@@ -40,10 +40,11 @@ public class InvoiceController {
 
     //Añadir getInvoice by id
     @GetMapping(path = "{invoice_id}")
-    public ResponseEntity<Object> getInvoiceById (@PathVariable int invoice_id) {
+    public ResponseEntity<Object> getInvoiceById (@PathVariable Integer invoice_id) {
         try {
             System.out.println(invoice_id);
             InvoiceWithDetailsDTO data = invoiceService.getInvoiceById(invoice_id);
+            System.out.println(data);
             return ResponseHandler.generateResponse(
                     "Get Invoice by Id succesful",
                     HttpStatus.OK,

@@ -13,6 +13,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
     //DTO
     @Query("SELECT new com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDTO(" +
             "i.id invoice_id, " +
+            "i.id client_id, " +
             "i.created_at, " +
             "i.total" +
             ") FROM Invoice i INNER JOIN i.client c WHERE c.id = :id")

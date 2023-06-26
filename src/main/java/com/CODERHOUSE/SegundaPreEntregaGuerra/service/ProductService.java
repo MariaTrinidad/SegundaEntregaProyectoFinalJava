@@ -67,8 +67,5 @@ public class ProductService {
             System.out.println(producto.get());
             System.out.println(productRepository.findById(productId));
 
-
-
-
     }
 }

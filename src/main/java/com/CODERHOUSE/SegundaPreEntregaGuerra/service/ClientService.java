@@ -1,6 +1,7 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
+import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,16 @@ public class ClientService {
             return cliente.get();
         }
     }
+    public void deleteClient(Integer clientId){
 
+        Optional<Client> cliente = clientRepository.findById(clientId);
+        System.out.println("Cliente a dar de baja "+ cliente);
+        cliente.get().setIs_active(false);
+        clientRepository.saveAndFlush(cliente.get());
+        System.out.println(cliente.get());
+
+
+    }
     public boolean clientExist (int id) throws Exception {
         Optional<Client> cliente = clientRepository.findById(id);
         return cliente.isPresent();

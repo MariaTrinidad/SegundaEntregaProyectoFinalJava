@@ -1,12 +1,14 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 
 public class InvoiceDetailDTO {
+    private  String title;
     private String description;
     private String code;
     private Double price;
     private Integer quantity;
 
-    public InvoiceDetailDTO(String description, String code, Double price, Integer quantity) {
+    public InvoiceDetailDTO(String title,String description, String code, Double price, Integer quantity) {
+        this.title = title;
         this.description = description;
         this.code = code;
         this.price = price;
@@ -43,5 +45,32 @@ public class InvoiceDetailDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceDetailDTO{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", code='" + code + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
 }
