@@ -79,7 +79,7 @@ public class ClientService {
             try {
                 Object value = field.get(client);
                 System.out.println(field);
-                if (value == null) {
+                if (value == null && field.getName()!= "invoice") {
                     System.out.println(field.getName());
                     return field.getName();
                 }

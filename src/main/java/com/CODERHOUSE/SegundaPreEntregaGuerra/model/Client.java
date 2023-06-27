@@ -21,7 +21,7 @@ public class Client {
     private String lastname;
     @Column(nullable = false, unique = true)
 
-    private String docnumber;
+    private Integer docnumber;
 
     @Column(nullable = false)
     private Boolean is_active;
@@ -62,11 +62,11 @@ public class Client {
         this.lastname = lastname;
     }
 
-    public String getDocnumber() {
+    public Integer getDocnumber() {
         return docnumber;
     }
 
-    public void setDocnumber(String docnumber) {
+    public void setDocnumber(Integer docnumber) {
         this.docnumber = docnumber;
     }
 
