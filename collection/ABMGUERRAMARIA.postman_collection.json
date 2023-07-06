@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Maria\",\r\n    \"lastname\":\"Guerra\",\r\n    \"docnumber\": 41573813,\r\n    \"date_birthday\": \"1999-12-01\",\r\n    \"is_active\":true\r\n}",
+							"raw": "{\r\n    \"name\": \"Maria\",\r\n    \"lastname\":\"Guerra\",\r\n    \"docnumber\": 4123456,\r\n    \"is_active\":true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":1,\r\n    \"name\": \"Maria\",\r\n    \"lastname\":\"Guerra\",\r\n    \"docnumber\": 41573811,\r\n    \"date_birthday\": \"1999-12-01\",\r\n    \"is_active\":true\r\n}",
+							"raw": "{\r\n    \"id\":1,\r\n    \"name\": \"Maria\",\r\n    \"lastname\":\"Guerra\",\r\n    \"docnumber\": 41573811,\r\n    \"is_active\":true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -135,7 +135,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONSKU\",\r\n    \"price\": 213.00,\r\n    \"stock\":5,\r\n    \"title\": \"algo\",\r\n    \"is_active\":true\r\n    \r\n}",
+							"raw": "{\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONSK0U2\",\r\n    \"price\": 213.00,\r\n    \"stock\":5,\r\n    \"title\": 1,\r\n    \"is_active\":true\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -310,7 +310,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"client_id\": 1,\r\n  \"product_list\":[\r\n      {\r\n          \"productId\":1,\r\n          \"quantity\":1\r\n      }\r\n  ]  \r\n}",
+							"raw": "{\r\n  \"client_id\": 1,\r\n  \"product_list\":[\r\n      {\r\n          \"productId\":1,\r\n          \"quantity\":1\r\n      },\r\n      {\r\n          \"productId\":2,\r\n          \"quantity\":1\r\n      }\r\n  ]  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

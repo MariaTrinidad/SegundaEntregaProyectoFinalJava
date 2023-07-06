@@ -43,11 +43,13 @@ public class InvoiceService {
                if (product.getStock() < productosRequesting.getQuantity()) {
                    throw new Exception("No hay stock suficiente del producto con Id: " + productosRequesting.getProductId());
                } else {
+                   System.out.println("indice product invoice" + product.getId() +" " + i);
                    total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
                    productService.decreaseStockProducts(requestInvoice.getProduct_list());
-                   i++;
+
                }
            }
+           i++;
 
         }
 
@@ -68,6 +70,7 @@ public class InvoiceService {
         i = 0;
         for (Product productForDetail:
                 productList) {
+            System.out.println("indice productForDetail invoice" + i);
             InvoiceDetail newInvoice = new InvoiceDetail();
             newInvoice.setPrice(productForDetail.getPrice());
             newInvoice.setInvoice(invoiceCreated);
