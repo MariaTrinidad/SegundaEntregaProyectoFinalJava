@@ -1,6 +1,7 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @JsonIgnore
     @ManyToOne()
     private Client client;
 

@@ -28,30 +28,28 @@ public class InvoiceService {
     private ClientService clientService;
     public InvoiceDTO postInvoice (RequestInvoice requestInvoice) throws Exception {
 
-        //Buscamos al cliente a través de su id
+        //Busca al cliente a través de su id
         Client clientExist = clientService.getClient(requestInvoice.getClient_id());
-        //Buscamos los productos
+        //Buscamolos productos
         List<Product> productList = productService.getProductsById(requestInvoice.getProduct_list());
-        System.out.println("productListId "  + requestInvoice.getProduct_list());
-        //Calculo del total
+
+        //Calculo del total y validacion de Stock
         double total = 0;
         int i = 0;
-        for (Product product:
-                productList) {
            for (RequestProductDetail productosRequesting :
                requestInvoice.getProduct_list()) {
-               if (product.getStock() < productosRequesting.getQuantity()) {
+
+               if (productList.get(i).getStock() < requestInvoice.getProduct_list().get(i).getQuantity()) {
                    throw new Exception("No hay stock suficiente del producto con Id: " + productosRequesting.getProductId());
                } else {
-                   System.out.println("indice product invoice" + product.getId() +" " + i);
-                   total += product.getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
-                   productService.decreaseStockProducts(requestInvoice.getProduct_list());
+                   System.out.println("indice product invoice" + productList.get(i).getId() +" " + i);
+                   total += productList.get(i).getPrice() * requestInvoice.getProduct_list().get(i).getQuantity();
+                   i++;
 
                }
-           }
-           i++;
-
-        }
+            }
+        //Si no hubo error pasa a descontar los stocks de los productos
+        productService.decreaseStockProducts(requestInvoice.getProduct_list());
 
         //Instanciamos un objeto invoice
         Invoice invoiceCreated = new Invoice();

@@ -1,5 +1,6 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class Client {
 
     @Column(nullable = false)
     private Boolean is_active;
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Invoice> invoice;
 
