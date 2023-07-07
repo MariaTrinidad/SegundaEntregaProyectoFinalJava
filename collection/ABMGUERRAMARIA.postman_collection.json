@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "00a30e3b-5515-47af-8adc-f4326be15b3c",
 		"name": "ABM",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "27636147"
 	},
 	"item": [
@@ -23,19 +23,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/client",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"client"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/client"
 					},
 					"response": []
 				},
@@ -44,20 +32,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8888/api/v1/client/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"client",
-								"1"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/client/1"
 					},
 					"response": []
 				},
@@ -75,21 +50,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/client/delete/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"client",
-								"delete",
-								"1"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/client/delete/1"
 					},
 					"response": []
 				},
@@ -107,19 +68,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/client",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"client"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/client/1"
 					},
 					"response": []
 				}
@@ -135,26 +84,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONSK0U2\",\r\n    \"price\": 213.00,\r\n    \"stock\":5,\r\n    \"title\": 1,\r\n    \"is_active\":true\r\n    \r\n}",
+							"raw": "{\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONFIJO2\",\r\n    \"price\": 2124.00,\r\n    \"stock\":2,\r\n    \"title\": \"jueguete Piñon Fijo tamaño mediano\",\r\n    \"is_active\":true\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/product",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"product"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/product"
 					},
 					"response": []
 				},
@@ -163,20 +100,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8888/api/v1/product/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"product",
-								"1"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/product/1"
 					},
 					"response": []
 				},
@@ -190,27 +114,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"productId\": 1\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"productId\": 1\r\n    },\r\n    {\r\n        \"productId\": 2\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/product/ProductsDetails",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"product",
-								"ProductsDetails"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/product/ProductsDetails"
 					},
 					"response": []
 				},
@@ -228,21 +139,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/product/deleteProduct/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"product",
-								"deleteProduct",
-								"1"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/product/deleteProduct/1"
 					},
 					"response": []
 				},
@@ -253,26 +150,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":1,\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONSKU\",\r\n    \"price\": 500.00,\r\n    \"stock\":5,\r\n    \"title\": \"algo\",\r\n    \"is_active\":true\r\n    \r\n}",
+							"raw": "{\r\n    \"id\":1,\r\n    \"description\": \"Juguete Piñon Fijo22 \",\r\n    \"code\": \"PIÑONSKU\",\r\n    \"price\": 500.00,\r\n    \"stock\":5,\r\n    \"title\": \"algo\",\r\n    \"is_active\":true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/product",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"product"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/product/1"
 					},
 					"response": []
 				}
@@ -286,20 +171,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8888/api/v1/invoice/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"invoice",
-								"1"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/invoice/1"
 					},
 					"response": []
 				},
@@ -317,19 +189,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8888/api/v1/invoice",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8888",
-							"path": [
-								"api",
-								"v1",
-								"invoice"
-							]
-						}
+						"url": "http://localhost:8888/api/v1/invoice"
 					},
 					"response": []
 				}
