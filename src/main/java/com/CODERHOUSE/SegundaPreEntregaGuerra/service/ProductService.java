@@ -1,19 +1,15 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
-import com.CODERHOUSE.SegundaPreEntregaGuerra.middleware.ResponseHandler;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.RequestProductDetail;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -68,11 +64,14 @@ public class ProductService {
         }
     }
 
-    public void updateProduct(Product product){
+    public void updateProduct(int id, Product product) throws Exception {
+        Optional<Product> productoExistente = productRepository.findById(id);
+        if(productoExistente.isEmpty()){
+            throw new Exception("Product not exist");
+        } else {
 
-        productRepository.saveAndFlush(product);
-
-
+            productRepository.saveAndFlush(product);
+        }
     }
     public void deleteProduct(Integer productId){
 

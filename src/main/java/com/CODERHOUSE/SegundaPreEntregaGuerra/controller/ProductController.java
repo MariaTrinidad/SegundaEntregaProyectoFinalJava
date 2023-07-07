@@ -90,14 +90,15 @@ public class ProductController {
 
 
     }
-    @PutMapping
-    public ResponseEntity<Object> updateClient(@RequestBody Product product){
+    @PutMapping(path = "{id}")
+    public ResponseEntity<Object> updateProduct(@PathVariable() int id, @RequestBody Product product){
         try {
-            System.out.println("Product a actualizar" + product);
-            productService.updateProduct(product);
+            System.out.println(product);
+            System.out.println(id);
+            productService.updateProduct(id, product);
 
             return ResponseHandler.generateResponse(
-                    "Client Update successfully",
+                    "Product Update successfully",
                     HttpStatus.OK,
                     product
             );

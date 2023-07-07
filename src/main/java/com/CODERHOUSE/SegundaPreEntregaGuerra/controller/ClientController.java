@@ -62,17 +62,16 @@ public class ClientController {
 
     }
 
-    @PutMapping
-    public ResponseEntity<Object> updateClient(@RequestBody Client client){
+    @PutMapping(path = "{id}")
+    public ResponseEntity<Object> updateClient(@PathVariable() int id, @RequestBody Client client){
         try {
-            System.out.println("Cliente a actualizar" + client);
-            clientService.updateClient(client);
-
-
+            System.out.println(client);
+            System.out.println(id);
+            clientService.updateClient(id , client);
             return ResponseHandler.generateResponse(
-                    "Client Update successfully",
+                    "Data retrieved successfully",
                     HttpStatus.OK,
-                    client
+                    "Client updated"
             );
         } catch (Exception e) {
             return ResponseHandler.generateResponse(

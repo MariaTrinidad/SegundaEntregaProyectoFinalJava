@@ -1,9 +1,7 @@
 package com.CODERHOUSE.SegundaPreEntregaGuerra.service;
 
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Client;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Invoice;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.model.InvoiceDTO;
-import com.CODERHOUSE.SegundaPreEntregaGuerra.model.Product;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.ClientRepository;
 import com.CODERHOUSE.SegundaPreEntregaGuerra.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +43,15 @@ public class ClientService {
     }
 
 
-    public void updateClient(Client client){
+    public void updateClient(int id, Client client) throws Exception {
+        Optional<Client> clienteExistente = clientRepository.findById(id);
+        if(clienteExistente.isEmpty()){
+            throw new Exception("Client not exist");
+        } else {
 
-        clientRepository.saveAndFlush(client);
+            clientRepository.saveAndFlush(client);
+        }
+
     }
     public void deleteClient(Integer clientId){
 

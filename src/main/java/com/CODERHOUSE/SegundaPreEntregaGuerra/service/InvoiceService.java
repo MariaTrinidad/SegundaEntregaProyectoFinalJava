@@ -30,6 +30,9 @@ public class InvoiceService {
 
         //Busca al cliente a través de su id
         Client clientExist = clientService.getClient(requestInvoice.getClient_id());
+        if (!clientExist.getIs_active()){
+            throw new Exception("El cliente con Id: " + clientExist.getId() + " no esta activo ");
+        }
         //Buscamolos productos
         List<Product> productList = productService.getProductsById(requestInvoice.getProduct_list());
 
@@ -38,7 +41,9 @@ public class InvoiceService {
         int i = 0;
            for (RequestProductDetail productosRequesting :
                requestInvoice.getProduct_list()) {
-
+                if(!productList.get(i).getIs_active()){
+                    throw new Exception("El producto con Id: " + productosRequesting.getProductId() + " no esta activo ");
+                }
                if (productList.get(i).getStock() < requestInvoice.getProduct_list().get(i).getQuantity()) {
                    throw new Exception("No hay stock suficiente del producto con Id: " + productosRequesting.getProductId());
                } else {
